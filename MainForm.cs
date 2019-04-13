@@ -32,7 +32,7 @@ using System.Threading;
 
 namespace Sfondo
 {
-	public partial class MainForm : Form
+	public class MainForm : Form
 	{
 		//string[] m_imglist;
 		List<string> m_imglist = new List<string>();
@@ -123,7 +123,7 @@ namespace Sfondo
 
 			pict.Location = new Point(0, 0);
 
-			Clock.Interval = cfg.SecondNextImage + 1000;
+			Clock.Interval = cfg.SecondNextImage * 1000;
 			SubClock.Interval = cfg.MillisecondNextTransition;
 
 			MainForm_SizeChanged(null, null);
@@ -314,5 +314,87 @@ namespace Sfondo
 						m_workThead.Abort();
 			}
 		}
-	}
+
+		/// <summary>
+		/// Variabile di progettazione necessaria.
+		/// </summary>
+		private System.ComponentModel.IContainer components = null;
+
+		/// <summary>
+		/// Pulire le risorse in uso.
+		/// </summary>
+		/// <param name="disposing">ha valore true se le risorse gestite devono essere eliminate, false in caso contrario.</param>
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing && (components != null))
+			{
+				components.Dispose();
+			}
+			base.Dispose(disposing);
+		}
+
+		#region Codice generato da Progettazione Windows Form
+
+		/// <summary>
+		/// Metodo necessario per il supporto della finestra di progettazione. Non modificare
+		/// il contenuto del metodo con l'editor di codice.
+		/// </summary>
+		private void InitializeComponent()
+		{
+			this.components = new System.ComponentModel.Container();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+			this.pict = new System.Windows.Forms.PictureBox();
+			this.Clock = new System.Windows.Forms.Timer(this.components);
+			this.SubClock = new System.Windows.Forms.Timer(this.components);
+			((System.ComponentModel.ISupportInitialize)(this.pict)).BeginInit();
+			this.SuspendLayout();
+			// 
+			// pict
+			// 
+			this.pict.BackColor = System.Drawing.Color.DarkRed;
+			this.pict.Location = new System.Drawing.Point(0, 0);
+			this.pict.Name = "pict";
+			this.pict.Size = new System.Drawing.Size(204, 109);
+			this.pict.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+			this.pict.TabIndex = 0;
+			this.pict.TabStop = false;
+			this.pict.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pict_MouseClick);
+			this.pict.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.pict_MouseDoubleClick);
+			// 
+			// Clock
+			// 
+			this.Clock.Enabled = true;
+			this.Clock.Interval = 1000;
+			this.Clock.Tick += new System.EventHandler(this.Clock_Tick);
+			// 
+			// SubClock
+			// 
+			this.SubClock.Interval = 5;
+			this.SubClock.Tick += new System.EventHandler(this.SubClock_Tick);
+			// 
+			// MainForm
+			// 
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackColor = System.Drawing.Color.Black;
+			this.ClientSize = new System.Drawing.Size(290, 163);
+			this.Controls.Add(this.pict);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+			this.Name = "MainForm";
+			this.Text = "MainForm";
+			this.Activated += new System.EventHandler(this.MainForm_Activated);
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
+			this.SizeChanged += new System.EventHandler(this.MainForm_SizeChanged);
+			((System.ComponentModel.ISupportInitialize)(this.pict)).EndInit();
+			this.ResumeLayout(false);
+			this.PerformLayout();
+
+		}
+
+		#endregion
+
+		private System.Windows.Forms.PictureBox pict;
+		private System.Windows.Forms.Timer Clock;
+		private System.Windows.Forms.Timer SubClock;
+		}
 }
